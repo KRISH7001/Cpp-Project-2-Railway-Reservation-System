@@ -70,11 +70,6 @@ You can run this program using:
 
 Using G++:
 
-```bash
-g++ -o banking-system banking-system.cpp
-./banking-system
-```
-
 ## 🎯 Learning Objectives
 
 This project helps practice:
@@ -107,7 +102,3 @@ Banking-System-Project/
 ## 👨‍💻 Author
 
 **Krish Sapariya**
-
-This repository is intended for learning and practicing fundamental C++
-programming concepts, especially classes, objects, inheritance,
-polymorphism, and encapsulation.
