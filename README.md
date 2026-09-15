@@ -1,63 +1,79 @@
 ## 📁 Project Overview
 
 This project contains a simple C++ program that demonstrates fundamental
-object-oriented programming concepts such as classes, objects, static
-members, constructors/destructors, encapsulation, and array-based record
-management. The program included is:
+object-oriented programming concepts such as classes, objects,
+inheritance, polymorphism, and encapsulation. The program included is:
 
-- **Railway Reservation System** – Manages a database of train records,
-  allowing you to add, display, and search trains by train number.
+- **Banking System** – Lets you create different types of bank accounts,
+  perform deposits/withdrawals, calculate interest, and look up account
+  information.
 
 ## 📌 Program Included
 
-### 1. Railway Reservation System
-**File:** `Railway_Reservation_System.cpp`
+### 1. Banking System
+**File:** `banking-system.cpp`
 
-This program lets you build up a simple in-memory database of trains and
-interact with it through a menu. It uses:
+This program lets you manage a simple in-memory bank made up of
+different account types, interacting through a menu. It uses:
 
-- A `Train` class with attributes (train number, name, source,
-  destination, time) encapsulated as private members
-- A `static` member (`trainCount`) tracked via the constructor and
-  destructor to count how many `Train` objects currently exist
-- Default and parameterized constructors, plus a destructor
+- A `BankAccount` base class with attributes (account number, holder
+  name, balance) encapsulated as protected members
+- Three derived classes — `SavingsAccount`, `CheckingAccount`, and
+  `FixedDepositAccount` — each inheriting from `BankAccount`
+- **Polymorphism**: `displayAccountInfo()` and `calculateInterest()` are
+  declared `virtual` in the base class and `override`n in each derived
+  class (using `override`), then called through a `BankAccount*` pointer
+  so the correct version runs automatically for each account type
+- Default and parameterized constructors, plus a virtual destructor
 - Getters and setters for every attribute
-- C-style strings (`char[]`) manipulated safely with `<cstring>`
-  functions such as `strcpy`
-- A `RailwaySystem` class that owns a fixed-size array of `Train`
-  objects (`Train trains[100]`) and manages adding, displaying, and
-  searching records
+- A `Bank` class that owns an array of `BankAccount*` pointers
+  (`accounts[100]`), managing account creation, lookup, and display
 - A menu-driven interface using `switch` / `do-while`
 - User input using `cin` and `cin.getline`
 
-On startup, the program asks you to enter at least 3 initial train
-records before showing the main menu:
+The main menu looks like this:
 
 ```
-1. Add New Train Record
-2. Display All Train Records
-3. Search Train by Number
-4. Exit
+1. Create Account
+2. Deposit
+3. Withdraw
+4. Calculate Interest
+5. Display Account Info (by number)
+6. Display All Accounts
+7. Exit
 ```
 
-Searching works by scanning the array for a matching `trainNumber`:
+Each account type behaves differently for the same operation — a good
+example of polymorphism in action:
 
 ```cpp
-for (int i = 0; i < totalTrains; i++)
-{
-    if (trains[i].getTrainNumber() == number)
-    {
-        // train found
-    }
-}
+// Called through a base class pointer — the actual (derived) type
+// decides what happens:
+acc->withdraw(amount);
 ```
+
+- `SavingsAccount` earns interest: `balance * (interestRate / 100.0)`
+- `CheckingAccount` allows withdrawals into an overdraft, up to
+  `overdraftLimit`
+- `FixedDepositAccount` locks funds for its `term` (in months) and
+  refuses withdrawals until maturity, earning:
+  `balance * (interestRate / 100.0) * (term / 12.0)`
 
 ## 🛠️ Requirements
 
+You can run this program using:
+
+- GCC / G++ Compiler
+- Visual Studio Code
 
 ## ▶️ How to Run
 
 Using G++:
+
+```bash
+g++ -o banking-system banking-system.cpp
+./banking-system
+```
 
 ## 🎯 Learning Objectives
 
@@ -65,11 +81,11 @@ This project helps practice:
 
 - Basic C++ syntax
 - Classes, objects, and encapsulation
-- Static class members
+- Inheritance (base class + multiple derived classes)
+- Polymorphism (virtual functions, `override`, base-class pointers)
 - Constructors and destructors
 - Getters and setters
-- Working with C-style strings (`char[]`, `strcpy`)
-- Arrays of objects
+- Arrays of pointers to a base class
 - Input and output using `cin` and `cout`
 - Conditional statements and loops (`switch`, `do-while`, `for`)
 - Menu-driven program design
@@ -78,10 +94,10 @@ This project helps practice:
 ## 📂 Project Structure
 
 ```
-Railway-Reservation-System-Project/
+Banking-System-Project/
 │
 ├── README.md
-└── Railway_Reservation_System.cpp
+└── banking-system.cpp
 ```
 
 ## 🔹 Project Explanation Video
@@ -90,4 +106,8 @@ Railway-Reservation-System-Project/
 
 ## 👨‍💻 Author
 
-**KRISH SAPARIYA**
+**Krish Sapariya**
+
+This repository is intended for learning and practicing fundamental C++
+programming concepts, especially classes, objects, inheritance,
+polymorphism, and encapsulation.
