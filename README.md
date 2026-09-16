@@ -1,106 +1,76 @@
-## 📁 Project Overview
+📁 Project Overview
 
-This project contains a simple C++ program that demonstrates fundamental
-object-oriented programming concepts such as classes, objects,
-inheritance, polymorphism, and encapsulation. The program included is:
+This project contains a simple C++ program that demonstrates fundamental object-oriented programming concepts such as classes, objects, encapsulation, and static members. The program included is:
 
-- **Banking System** – Lets you create different types of bank accounts,
-  perform deposits/withdrawals, calculate interest, and look up account
-  information.
+Railway Reservation System – Lets you add train records, view all stored trains, and search for a specific train by its train number.
+📌 Program Included
+1. Railway Reservation System
 
-## 📌 Program Included
+File: Railway_Reservation_System.cpp
 
-### 1. Banking System
-**File:** `banking-system.cpp`
+This program lets you manage a simple in-memory train database, interacting through a menu. It uses:
 
-This program lets you manage a simple in-memory bank made up of
-different account types, interacting through a menu. It uses:
-
-- A `BankAccount` base class with attributes (account number, holder
-  name, balance) encapsulated as protected members
-- Three derived classes — `SavingsAccount`, `CheckingAccount`, and
-  `FixedDepositAccount` — each inheriting from `BankAccount`
-- **Polymorphism**: `displayAccountInfo()` and `calculateInterest()` are
-  declared `virtual` in the base class and `override`n in each derived
-  class (using `override`), then called through a `BankAccount*` pointer
-  so the correct version runs automatically for each account type
-- Default and parameterized constructors, plus a virtual destructor
-- Getters and setters for every attribute
-- A `Bank` class that owns an array of `BankAccount*` pointers
-  (`accounts[100]`), managing account creation, lookup, and display
-- A menu-driven interface using `switch` / `do-while`
-- User input using `cin` and `cin.getline`
+A Train class with attributes (train number, name, source, destination, time) encapsulated as private members
+Encapsulation: all data fields are private, accessed only through public getters and setters
+Default and parameterized constructors, plus a destructor
+A static int trainCount shared across all Train objects, tracking how many currently exist — incremented in the constructors and decremented in the destructor
+A RailwaySystem class that owns a fixed-size array of Train objects (trains[100]), managing addition, display, and search
+A menu-driven interface using switch / do-while
+User input using cin and cin.getline
 
 The main menu looks like this:
 
-```
-1. Create Account
-2. Deposit
-3. Withdraw
-4. Calculate Interest
-5. Display Account Info (by number)
-6. Display All Accounts
-7. Exit
-```
+1. Add New Train Record
+2. Display All Train Records
+3. Search Train by Number
+4. Exit
 
-Each account type behaves differently for the same operation — a good
-example of polymorphism in action:
+Each Train object stores its own details and knows how to display itself:
 
-```cpp
-// Called through a base class pointer — the actual (derived) type
-// decides what happens:
-acc->withdraw(amount);
-```
-
-- `SavingsAccount` earns interest: `balance * (interestRate / 100.0)`
-- `CheckingAccount` allows withdrawals into an overdraft, up to
-  `overdraftLimit`
-- `FixedDepositAccount` locks funds for its `term` (in months) and
-  refuses withdrawals until maturity, earning:
-  `balance * (interestRate / 100.0) * (term / 12.0)`
-
-## 🛠️ Requirements
+cpp
+// Called on each Train object stored in the RailwaySystem array:
+trains[i].displayTrainDetails();
+addTrain() fills the next free slot in the array, up to a maximum of 100 trains
+displayAllTrains() loops through every stored train and prints its details
+searchTrainByNumber() does a linear scan through the array, comparing each train's number against the one entered
+🛠️ Requirements
 
 You can run this program using:
 
-- GCC / G++ Compiler
-- Visual Studio Code
-
-## ▶️ How to Run
+GCC / G++ Compiler
+Visual Studio Code
+▶️ How to Run
 
 Using G++:
 
-## 🎯 Learning Objectives
+bash
+g++ Railway_Reservation_System.cpp -o railway_system
+./railway_system
+🎯 Learning Objectives
 
 This project helps practice:
 
-- Basic C++ syntax
-- Classes, objects, and encapsulation
-- Inheritance (base class + multiple derived classes)
-- Polymorphism (virtual functions, `override`, base-class pointers)
-- Constructors and destructors
-- Getters and setters
-- Arrays of pointers to a base class
-- Input and output using `cin` and `cout`
-- Conditional statements and loops (`switch`, `do-while`, `for`)
-- Menu-driven program design
-- Basic problem solving
-
-## 📂 Project Structure
-
-```
-Banking-System-Project/
+Basic C++ syntax
+Classes, objects, and encapsulation
+Constructors and destructors
+Static class members
+Getters and setters
+Arrays of objects
+Input and output using cin and cout
+Conditional statements and loops (switch, do-while, for)
+Menu-driven program design
+Basic problem solving
+📂 Project Structure
+Railway-Reservation-System-Project/
 │
 ├── README.md
-└── banking-system.cpp
-```
+└── Railway_Reservation_System.cpp
+🔹 Project Explanation Video
 
-## 🔹 Project Explanation Video
+👉 Explanation Video:
 
-👉 Explanation Video: 
+[Add your video link here]
 
-https://drive.google.com/file/d/1qvLnt-lkMXlM8mCTPnaRAShy7c4XC2mf/view?usp=sharing
+👨‍💻 Author
 
-## 👨‍💻 Author
-
-**Krish Sapariya**
+Krish Sapariya
