@@ -97,7 +97,9 @@ Banking-System-Project/
 
 ## 🔹 Project Explanation Video
 
-👉 Explanation Video: [Add your video link here]
+👉 Explanation Video: 
+
+https://drive.google.com/file/d/1qvLnt-lkMXlM8mCTPnaRAShy7c4XC2mf/view?usp=sharing
 
 ## 👨‍💻 Author
 
